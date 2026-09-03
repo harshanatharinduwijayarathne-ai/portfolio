@@ -1,0 +1,660 @@
+<title>Harshana Wijayarathne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --surface: #ffffff;
+    --surface-2: #edeae1;
+    --ink: #1c2430;
+    --ink-muted: #59626f;
+    --ink-faint: #90980166;
+    --ink-faint: #8b93a1;
+    --accent: #2b5a86;
+    --accent-ink: #ffffff;
+    --accent-soft: #dfe8ef;
+    --line: #ded9cd;
+    --good: #3d7a58;
+    --good-soft: #dfeee5;
+    --shadow: rgba(28, 36, 48, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12161d;
+      --surface: #1a2029;
+      --surface-2: #1f2733;
+      --ink: #e7eaee;
+      --ink-muted: #a6afbd;
+      --ink-faint: #6c7789;
+      --accent: #7aa8d1;
+      --accent-ink: #10151c;
+      --accent-soft: #22384a;
+      --line: #2b3340;
+      --good: #74c093;
+      --good-soft: #1e2f27;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #12161d;
+    --surface: #1a2029;
+    --surface-2: #1f2733;
+    --ink: #e7eaee;
+    --ink-muted: #a6afbd;
+    --ink-faint: #6c7789;
+    --accent: #7aa8d1;
+    --accent-ink: #10151c;
+    --accent-soft: #22384a;
+    --line: #2b3340;
+    --good: #74c093;
+    --good-soft: #1e2f27;
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  h1, h2, h3 { text-wrap: balance; font-family: "Newsreader", ui-serif, Georgia, serif; font-weight: 500; margin: 0; }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 0;
+    min-height: 100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 3rem 2rem 2rem;
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    scrollbar-width: thin;
+  }
+
+  .avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Newsreader", serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    flex: none;
+  }
+
+  .identity h1 {
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin-top: 0.9rem;
+  }
+
+  .identity .role {
+    margin-top: 0.4rem;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .contact-list li {
+    display: flex;
+    gap: 0.55rem;
+    align-items: baseline;
+    color: var(--ink-muted);
+  }
+
+  .contact-list .k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    min-width: 3.6em;
+    flex: none;
+    padding-top: 0.15em;
+  }
+
+  .contact-list a { text-decoration: none; border-bottom: 1px solid transparent; }
+  .contact-list a:hover, .contact-list a:focus-visible { border-bottom-color: var(--accent); color: var(--ink); }
+
+  nav.sidenav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  nav.sidenav a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    padding: 0.35rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.15s ease;
+  }
+
+  nav.sidenav a .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--ink-faint);
+    flex: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  nav.sidenav a:hover, nav.sidenav a:focus-visible, nav.sidenav a.active {
+    color: var(--ink);
+  }
+
+  nav.sidenav a.active .dot {
+    background: var(--accent);
+    transform: scale(1.6);
+  }
+
+  /* ---------- Main ---------- */
+  main {
+    padding: 3rem clamp(1.5rem, 4vw, 4rem) 6rem;
+    min-width: 0;
+  }
+
+  section {
+    max-width: 660px;
+    padding-top: 3.5rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  section:first-of-type { padding-top: 0.4rem; }
+
+  section > h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  section > .eyebrow {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  p { margin: 0 0 1em; color: var(--ink); }
+  p:last-child { margin-bottom: 0; }
+
+  .summary {
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+
+  .summary strong { font-weight: 600; }
+
+  /* Experience timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .role-entry {
+    position: relative;
+    padding: 0 0 2.4rem 1.5rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .role-entry:last-child { padding-bottom: 0; }
+
+  .role-entry::before {
+    content: "";
+    position: absolute;
+    left: -4.5px;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+  }
+
+  .role-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .role-head h3 { font-size: 1.15rem; }
+
+  .role-org {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .role-dates {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .role-entry ul {
+    margin: 0.7rem 0 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .role-entry li {
+    padding-left: 0.2rem;
+    font-size: 0.94rem;
+    color: var(--ink);
+  }
+
+  .role-entry li::marker {
+    color: var(--accent);
+  }
+
+  /* Projects */
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+
+  .project-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .project-card p {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  .stat {
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--good);
+    background: var(--good-soft);
+    border-radius: 4px;
+    padding: 0.05em 0.4em;
+    font-size: 0.88em;
+    white-space: nowrap;
+  }
+
+  /* Skills */
+  .skill-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-group {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0.3rem 1.2rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .skill-group:first-child { border-top: none; padding-top: 0; }
+
+  .skill-group .label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 0.25rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    background: var(--accent-soft);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 0.28rem 0.75rem;
+  }
+
+  /* Education / highlights */
+  .plain-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .plain-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+
+  .plain-list li:first-child { border-top: none; padding-top: 0; }
+
+  .plain-list .deg {
+    font-weight: 600;
+  }
+
+  .plain-list .inst {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+  }
+
+  .plain-list .yr {
+    margin-left: auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    padding-top: 0.15em;
+  }
+
+  footer {
+    max-width: 660px;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 860px) {
+    .page { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1.75rem 1.5rem;
+    }
+    .identity { flex: 1 1 auto; }
+    .contact-list, nav.sidenav { display: none; }
+    main { padding: 2rem 1.5rem 4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+
+<div class="page">
+  <aside class="sidebar">
+    <div>
+      <div class="avatar">HW</div>
+      <div class="identity">
+        <h1>Harshana Wijayarathne</h1>
+        <div class="role">Senior Support Executive<br>ERP / POS Implementation &amp; Client Support</div>
+      </div>
+    </div>
+
+    <ul class="contact-list">
+      <li><span class="k">Phone</span><span>+968 9814 1968<br>+94 78 469 6630</span></li>
+      <li><span class="k">Email</span><a href="mailto:harshanatharinduwijayarathne@gmail.com">harshanatharinduwijayarathne@gmail.com</a></li>
+      <li><span class="k">Web</span><a href="https://linkedin.com/in/harshana-wijayarathne-5b424118b" target="_blank" rel="noopener">linkedin.com/in/harshana-wijayarathne</a></li>
+      <li><span class="k">Base</span><span>Mawathagama, Sri Lanka</span></li>
+    </ul>
+
+    <nav class="sidenav" id="sidenav">
+      <a href="#profile"><span class="dot"></span>Profile</a>
+      <a href="#experience"><span class="dot"></span>Experience</a>
+      <a href="#projects"><span class="dot"></span>Key Projects</a>
+      <a href="#skills"><span class="dot"></span>Skills</a>
+      <a href="#education"><span class="dot"></span>Education</a>
+      <a href="#highlights"><span class="dot"></span>Highlights</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="profile">
+      <span class="eyebrow">Profile</span>
+      <p class="summary">Support and implementation executive with <strong>4+ years'</strong> experience delivering ERP, R-POS, Club Management, HRM, EDUCAL, and QHSE systems for multi-client accounts across Oman. Manages the full support lifecycle &mdash; requirements gathering, system configuration, data migration, UAT, go-live, and post-implementation support &mdash; with hands-on delivery of the AL-QLAA Club Management ERP/POS go-live. Combines client-facing communication with technical depth in data analysis, reporting, and helpdesk operations, backed by an MSc in progress in Information Technology and Strategic Innovation.</p>
+    </section>
+
+    <section id="experience">
+      <span class="eyebrow">Professional Experience</span>
+      <h2>Where I've worked</h2>
+      <div class="timeline" style="margin-top: 1.4rem;">
+        <div class="role-entry">
+          <div class="role-head">
+            <h3>Senior Support Executive</h3>
+            <span class="role-dates">May 2025 &ndash; Present</span>
+          </div>
+          <div class="role-org">OSOS Software Solutions, Oman</div>
+          <ul>
+            <li>Lead client-side implementation and support for the AL&#8209;QLAA Club Management project (ERP, R&#8209;POS, Club Management), covering opening balance uploads, item master and customer invoice gap analysis, and stakeholder go-live approvals.</li>
+            <li>Own end-to-end UAT for ERP and POS modules, including post-data-flush verification and formal sign-off communications with client stakeholders.</li>
+            <li>Perform Excel-based data migration and reconciliation (fuzzy matching, formula-driven validation) to validate item master and invoice data ahead of go-live.</li>
+            <li>Built and delivered a 25-minute internal Club/ERP training package from a recorded UAT walkthrough, used to onboard team members on system functions.</li>
+            <li>Provide first- and second-line support across ERP, HRM, EDUCAL, and QHSE product lines for multiple client accounts, triaging issues between user error and system defects.</li>
+          </ul>
+        </div>
+
+        <div class="role-entry">
+          <div class="role-head">
+            <h3>Implementation and Support Executive <span style="font-weight:400; color:var(--ink-muted); font-size:0.85em;">(L2 Support)</span></h3>
+            <span class="role-dates">Nov 2021 &ndash; Apr 2025</span>
+          </div>
+          <div class="role-org">Gears Software Solutions &middot; 3 yrs 6 mos</div>
+          <ul>
+            <li>Provided L2 support across ERP/POS product lines, investigating escalated client tickets to determine root cause (user error vs. system issue) and coordinating fixes with the development team.</li>
+            <li>Analysed and reported on a helpdesk ticket dataset, producing consolidated status and trend reports for management.</li>
+            <li>Delivered on-site requirements gathering, system configuration, and user training for client implementations in the Sultanate of Oman.</li>
+            <li>Conducted product demos and mock testing sessions with clients to confirm system functionality before go-live and smooth the transition process.</li>
+            <li>Collaborated with cross-functional teams to identify and resolve technical issues across multiple products.</li>
+            <li>Ran Knowledge Transfer (KT) sessions on sprint enhancements and new features, and trained new joiners on multi-system client support.</li>
+            <li>Coordinated feature and change requests between clients and the development team, aligning system changes with organizational priorities.</li>
+            <li>Managed handover of new products to clients within deadline, ensuring correctly configured data at each transition.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <span class="eyebrow">Key Projects</span>
+      <h2>Selected work</h2>
+      <div class="project-grid" style="margin-top: 1.4rem;">
+        <div class="project-card">
+          <h3>AL-QLAA (QC) Opening Balance &amp; Data Migration</h3>
+          <p>Delivered full opening balance migration (Bank, Income, Bills, Customer Invoices, Inventory) for the QC ERP go-live &mdash; reconciling <span class="stat mono">1,048</span> master items against <span class="stat mono">689</span> inventory records and resolving a duplicate-check upload error, ahead of client sign-off.</p>
+        </div>
+        <div class="project-card">
+          <h3>ERP &amp; POS Ticket Analysis &mdash; Al Qalaa Implementation</h3>
+          <p>Analysed <span class="stat mono">53</span> tickets (Jun 2025 &ndash; Jun 2026) across ERP/POS modules, reporting a <span class="stat mono">72%</span> resolution rate with priority/SLA and agent workload breakdowns to guide management action.</p>
+        </div>
+        <div class="project-card">
+          <h3>Helpdesk Ticket Analysis &amp; Reporting</h3>
+          <p>Consolidated support tickets at Gears into structured management reports covering status, volume, and yearly trends.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <span class="eyebrow">Skills</span>
+      <h2>What I bring</h2>
+      <div class="skill-groups" style="margin-top: 1.4rem;">
+        <div class="skill-group">
+          <div class="label">ERP / POS</div>
+          <div class="tag-row">
+            <span class="tag">OSOS ERP</span><span class="tag">R-POS</span><span class="tag">Club Management</span><span class="tag">HRM</span><span class="tag">EDUCAL</span><span class="tag">QHSE</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Data &amp; Reporting</div>
+          <div class="tag-row">
+            <span class="tag">SQL fundamentals</span><span class="tag">Excel &mdash; advanced formulas</span><span class="tag">VLOOKUP / HLOOKUP</span><span class="tag">Data reconciliation</span><span class="tag">Tableau</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Project &amp; Delivery</div>
+          <div class="tag-row">
+            <span class="tag">UAT design &amp; execution</span><span class="tag">Data migration</span><span class="tag">Requirements gathering</span><span class="tag">Go-live support</span><span class="tag">PRINCE2 / Agile (coursework)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Support Ops</div>
+          <div class="tag-row">
+            <span class="tag">L2 technical support</span><span class="tag">Helpdesk ticket management</span><span class="tag">Root-cause analysis</span><span class="tag">Change / feature request coordination</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Client &amp; Team</div>
+          <div class="tag-row">
+            <span class="tag">Stakeholder communication</span><span class="tag">Client training</span><span class="tag">KT session delivery</span><span class="tag">New-hire onboarding</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <span class="eyebrow">Education</span>
+      <h2>Academic background</h2>
+      <ul class="plain-list" style="margin-top: 1.4rem;">
+        <li>
+          <div>
+            <div class="deg">MSc, Information Technology and Strategic Innovation</div>
+            <div class="inst">Kingston University London</div>
+          </div>
+          <span class="yr">In progress</span>
+        </li>
+        <li>
+          <div>
+            <div class="deg">BA (Hons), Business Administration</div>
+            <div class="inst">London Metropolitan University &middot; 2nd Class Honours</div>
+          </div>
+          <span class="yr">2020</span>
+        </li>
+        <li>
+          <div>
+            <div class="deg">Pearson BTEC Level 7 Postgraduate Diploma</div>
+            <div class="inst">Strategic Management and Leadership</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="deg">HND in Software Engineering</div>
+            <div class="inst">Pearson, via ESoft Metro Campus</div>
+          </div>
+          <span class="yr">2023</span>
+        </li>
+        <li>
+          <div>
+            <div class="deg">Advanced Certificate in HR Management &amp; Marketing Management</div>
+            <div class="inst">IDM National Campus &middot; Excellent Pass</div>
+          </div>
+          <span class="yr">2017&ndash;18</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="highlights">
+      <span class="eyebrow">Additional Highlights</span>
+      <h2>Beyond the desk</h2>
+      <ul class="plain-list" style="margin-top: 1.4rem;">
+        <li><div>Completed Leadership and Personality Development training</div></li>
+        <li><div>Participated in the Science Leaders training program &mdash; winner, Science Research Projects Competition</div></li>
+      </ul>
+    </section>
+
+    <footer>Harshana Wijayarathne &middot; ERP / POS Implementation &amp; Client Support</footer>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('#sidenav a'));
+    var sections = links.map(function (a) {
+      return document.querySelector(a.getAttribute('href'));
+    });
+
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      var activeIndex = 0;
+      sections.forEach(function (sec, i) {
+        if (sec && sec.offsetTop <= pos) activeIndex = i;
+      });
+      links.forEach(function (a, i) {
+        a.classList.toggle('active', i === activeIndex);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
